@@ -1,7 +1,7 @@
 import 'express-async-errors';
 import 'reflect-metadata';
+import 'dotenv/config';
 import express, { NextFunction, Request, Response } from 'express';
-import dotenv from 'dotenv';
 import cors from 'cors';
 
 import routes from './routes';
@@ -9,13 +9,6 @@ import routes from './routes';
 import './shared/infra/typeorm/index';
 import AppError from './shared/errors/AppError';
 import multer from './config/multer';
-
-dotenv.config({
-  path:
-    process.env.NODE_ENV === 'development'
-      ? '.env.development'
-      : '.env.production',
-});
 
 const app = express();
 
