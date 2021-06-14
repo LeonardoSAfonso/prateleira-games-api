@@ -38,7 +38,7 @@ export default class createTableGames1623498261034
           {
             name: 'finished',
             type: 'boolean',
-            default: 0,
+            default: false,
           },
           {
             name: 'created_at',

@@ -20,7 +20,7 @@ export default class GameRepository {
     played_hours: number,
   ): Promise<Game> {
     const checkGames = await this.ormRepository.findAndCount({
-      where: { finished: 0 },
+      where: { finished: false },
     });
 
     if (checkGames[1] >= 5) {
@@ -61,7 +61,7 @@ export default class GameRepository {
   }
 
   async findAll(): Promise<Game[]> {
-    const games = await this.ormRepository.find({ where: { finished: 0 } });
+    const games = await this.ormRepository.find({ where: { finished: false } });
 
     if (!games?.length) {
       throw new AppError(`You don't have registered games.`, 404);
@@ -71,7 +71,7 @@ export default class GameRepository {
   }
 
   async findFinisheds(): Promise<Game[]> {
-    const games = await this.ormRepository.find({ where: { finished: 1 } });
+    const games = await this.ormRepository.find({ where: { finished: true } });
 
     if (!games?.length) {
       throw new AppError(`You don't have finished games.`, 404);
