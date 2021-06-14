@@ -37,7 +37,7 @@ export default class createTableGames1623498261034
           },
           {
             name: 'finished',
-            type: 'tinyint',
+            type: 'boolean',
             default: 0,
           },
           {
