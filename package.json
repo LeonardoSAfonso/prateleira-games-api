@@ -7,10 +7,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "SET NODE_ENV=development&& ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
-    "build": "SET NODE_ENV=production&& tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata",
+    "dev": "NODE_ENV=development ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
+    "build": "NODE_ENV=production tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata",
     "start": "node ./dist/server.js",
-    "typeorm": "SET NODE_ENV=development&& ts-node-dev ./node_modules/typeorm/cli.js"
+    "typeorm": "NODE_ENV=development ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "dependencies": {
     "celebrate": "^14.0.0",
