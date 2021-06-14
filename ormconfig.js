@@ -13,6 +13,9 @@ module.exports = {
   database: process.env.DATABASE_NAME,
   entities: [process.env.TYPEORM_ENTITIES],
   migrations: [process.env.TYPEORM_MIGRATION],
+  extra: {
+    ssl: { rejectUnauthorized: false }
+  },
   cli: {
     migrationsDir: process.env.TYPEORM_MIGRATION_DIR,
   },
