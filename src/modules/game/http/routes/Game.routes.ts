@@ -16,7 +16,7 @@ gameRouter.post(
     [Segments.BODY]: {
       name: Joi.string().required(),
       platform: Joi.string().required(),
-      played_hours: Joi.number(),
+      played_hours: Joi.number().required(),
     },
   }),
   gameController.create,

@@ -8,7 +8,14 @@ export default class GameController {
 
     const { name, platform, played_hours } = req.body;
 
-    const game = await gameRepository.create(name, platform, played_hours);
+    const finished = 0;
+
+    const game = await gameRepository.create(
+      name,
+      platform,
+      played_hours,
+      finished,
+    );
 
     return res.json(classToClass(game));
   }
