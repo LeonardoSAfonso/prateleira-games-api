@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
-    "build": "tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata",
+    "build": "tsc --target ES5 --experimentalDecorators --emitDecoratorMetadata node ./dist/server.js",
     "start": "node ./dist/server.js",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
     "schema:drop": "ts-node-dev ./node_modules/typeorm/cli.js schema:drop"
