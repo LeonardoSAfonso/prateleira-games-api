@@ -55,7 +55,7 @@ gameRouter.put(
   celebrate({
     [Segments.BODY]: {
       id: Joi.number().integer().required(),
-      finished: Joi.boolean().required(),
+      finished: Joi.number().integer().required(),
     },
   }),
   gameController.putFinish,

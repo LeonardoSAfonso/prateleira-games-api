@@ -1,57 +1,11 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export default class createTableGames1623498261034
   implements MigrationInterface
 {
   public async up(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.createTable(
-      new Table({
-        name: 'games',
-        columns: [
-          {
-            name: 'id',
-            type: 'int',
-            isPrimary: true,
-            generationStrategy: 'increment',
-            isGenerated: true,
-          },
-          {
-            name: 'name',
-            type: 'varchar',
-            isNullable: false,
-          },
-          {
-            name: 'platform',
-            type: 'varchar',
-            isNullable: false,
-          },
-          {
-            name: 'played_hours',
-            type: 'decimal(6,2)',
-            default: 0,
-          },
-          {
-            name: 'img_path',
-            type: 'varchar',
-            isNullable: true,
-          },
-          {
-            name: 'finished',
-            type: 'boolean',
-            default: false,
-          },
-          {
-            name: 'created_at',
-            type: 'timestamp',
-            default: 'now()',
-          },
-          {
-            name: 'updated_at',
-            type: 'timestamp',
-            default: 'now()',
-          },
-        ],
-      }),
+    await queryRunner.query(
+      `CREATE TABLE "games" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "platform" varchar NOT NULL, "played_hours" decimal(6,2) NOT NULL DEFAULT (0), "img_path" varchar, "finished" boolean NOT NULL DEFAULT (false), "created_at" timestamp NOT NULL DEFAULT (Date('now')), "updated_at" timestamp NOT NULL DEFAULT (Date('now')))`,
     );
   }
 
