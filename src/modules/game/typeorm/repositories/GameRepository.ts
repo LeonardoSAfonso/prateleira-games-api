@@ -63,9 +63,7 @@ export default class GameRepository {
   }
 
   async findAll(): Promise<Game[]> {
-    const games = await this.ormRepository.query(
-      'select * from games where finished = 0',
-    );
+    const games = await this.ormRepository.find({ where: { finished: 0 } });
 
     if (!games?.length) {
       throw new AppError(`You don't have registered games.`, 404);
@@ -75,9 +73,7 @@ export default class GameRepository {
   }
 
   async findFinisheds(): Promise<Game[]> {
-    const games = await this.ormRepository.query(
-      'select * from games where finished = 1',
-    );
+    const games = await this.ormRepository.find({ where: { finished: 1 } });
 
     if (!games?.length) {
       throw new AppError(`You don't have finished games.`, 404);
@@ -87,9 +83,7 @@ export default class GameRepository {
   }
 
   async findOne(id: number): Promise<Game> {
-    const game = await this.ormRepository.query(
-      `select * from games where id = ${id}`,
-    );
+    const game = await this.ormRepository.findOne(id);
 
     if (!game) {
       throw new AppError('Game not found.', 404);

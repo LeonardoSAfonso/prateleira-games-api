@@ -1,5 +1,11 @@
 import { Expose } from 'class-transformer';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity('games')
 export default class Game {
@@ -20,6 +26,12 @@ export default class Game {
 
   @Column()
   img_path: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
+  @UpdateDateColumn()
+  updated_at: Date;
 
   @Expose({ name: 'img_url' })
   getAvatarUrl(): string | null {
