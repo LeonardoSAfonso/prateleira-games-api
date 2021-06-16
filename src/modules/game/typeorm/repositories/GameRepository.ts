@@ -1,23 +1,19 @@
 import { getRepository, Repository } from 'typeorm';
 import AppError from '../../../../shared/errors/AppError';
-import DiskStorageProvider from '../../../../shared/providers/storageProvider/implementations/DiskStorageProvider';
-import IStorageProvider from '../../../../shared/providers/storageProvider/model/IStorageProvider';
 import Game from '../entities/Game';
 
 export default class GameRepository {
   private ormRepository: Repository<Game>;
 
-  private storageProvider: IStorageProvider;
-
   constructor() {
     this.ormRepository = getRepository(Game);
-    this.storageProvider = new DiskStorageProvider();
   }
 
   async create(
     name: string,
     platform: string,
     played_hours: number,
+    img_url: string,
     finished: number,
   ): Promise<Game> {
     const checkGames = await this.ormRepository.findAndCount({
@@ -35,27 +31,9 @@ export default class GameRepository {
       name,
       platform,
       played_hours,
+      img_url,
       finished,
     });
-
-    await this.ormRepository.save(game);
-
-    return game;
-  }
-
-  public async upload(id: number, capaFilename: string): Promise<Game> {
-    const game = await this.ormRepository.findOne(id);
-
-    if (!game) {
-      throw new AppError('Game not found', 404);
-    }
-
-    if (game.img_path) {
-      await this.storageProvider.deleteFile(game.img_path);
-    }
-
-    const filename = await this.storageProvider.saveFile(capaFilename);
-    game.img_path = filename;
 
     await this.ormRepository.save(game);
 

@@ -1,4 +1,3 @@
-import { Expose } from 'class-transformer';
 import {
   Column,
   CreateDateColumn,
@@ -25,18 +24,11 @@ export default class Game {
   finished: number;
 
   @Column()
-  img_path: string;
+  img_url: string;
 
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
   updated_at: Date;
-
-  @Expose({ name: 'img_url' })
-  getAvatarUrl(): string | null {
-    return this.img_path
-      ? `${process.env.API_URL}/files/${this.img_path}`
-      : null;
-  }
 }

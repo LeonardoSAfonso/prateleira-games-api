@@ -1,14 +1,10 @@
 import { celebrate, Joi, Segments } from 'celebrate';
 import { Router } from 'express';
-import multer from 'multer';
-import multerConfig from '../../../../config/multer';
 import GameController from '../controllers/GameController';
 
 const gameRouter = Router();
 
 const gameController = new GameController();
-
-const upload = multer(multerConfig);
 
 gameRouter.post(
   '/game',
@@ -17,16 +13,10 @@ gameRouter.post(
       name: Joi.string().required(),
       platform: Joi.string().required(),
       played_hours: Joi.number().required(),
+      img_url: Joi.string().required(),
     },
   }),
   gameController.create,
-);
-
-gameRouter.patch(
-  '/capa/:id',
-  celebrate({ [Segments.PARAMS]: { id: Joi.number().integer().required() } }),
-  upload.single('file'),
-  gameController.upload,
 );
 
 gameRouter.get('/games', gameController.findAll);

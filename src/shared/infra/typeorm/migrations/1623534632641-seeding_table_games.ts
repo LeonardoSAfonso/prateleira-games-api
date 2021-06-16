@@ -5,7 +5,7 @@ export default class seedingTableGames1623534632641
 {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `insert into games(name, platform, played_hours, img_path) values ('Resident Evil 4', 'Playstation 2', 14, 'be202f3f56d5c19d1aea.jpg'), ('Pokémon HeartGold', 'Nintendo DS', 8, 'f8da6117f97eff9d5c35.jpg')`,
+      `insert into games(name, platform, played_hours, img_url) values ('Resident Evil 4', 'Playstation 2', 14, 'https://static.metacritic.com/images/products/games/2/1b1a9d67d4ef046b5320670c890849cb-78.jpg'), ('Pokémon HeartGold', 'Nintendo DS', 8, 'https://static.metacritic.com/images/products/games/1/ea34d50166d49ca4af645e85e89d5804-78.jpg')`,
     );
   }
 
