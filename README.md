@@ -10,7 +10,7 @@
 </h3>
 
 <h4 align="center">
-	O frontend deste projeto pode ser encontrado no seguinte repositório [Prateleira Games](https://github.com/Pazeto22/prateleira-games)
+	O frontend deste projeto pode ser encontrado no seguinte repositório https://github.com/Pazeto22/prateleira-games.
 </h4>
 
 Tabela de conteúdos
